@@ -1,6 +1,5 @@
 import { galleryItems } from "./gallery-items.js";
 
-
 const galleryEl = document.querySelector(".gallery");
 
 function createGalleryMarkup(items) {
@@ -28,7 +27,7 @@ galleryEl.innerHTML = addGalleryMarkup;
 galleryEl.addEventListener("click", onImageClick);
 
 function onImageClick(evt) {
-  blockStandartAction(evt);
+  evt.preventDefault();
 
   if (evt.target.nodeName !== "IMG") {
     return;
@@ -43,12 +42,9 @@ function onImageClick(evt) {
   galleryEl.addEventListener("keydown", (evt) => {
     if (evt.code === "Escape") {
       instance.close();
+      document.removeEventListener("keydown", onImageClick);
     }
   });
-}
-
-function blockStandartAction(evt) {
-  evt.preventDefault();
 }
 
 console.log(galleryItems);

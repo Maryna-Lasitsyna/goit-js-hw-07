@@ -24,32 +24,9 @@ const addGalleryMarkup = createGalleryMarkup(galleryItems);
 
 galleryEl.innerHTML = addGalleryMarkup;
 
-galleryEl.addEventListener("click", onImageClick);
-
-function onImageClick(evt) {
-  blockStandartAction(evt);
-
-  if (evt.target.nodeName !== "IMG") {
-    return;
-  }
-
-  const lightbox = new SimpleLightbox(".gallery a", {
-    captionsData: "alt",
-    captionDelay: 250,
-    captionPosition: "bottom",
-  });
-
-  lightbox.show();
-
-  galleryEl.addEventListener("keydown", (evt) => {
-    if (evt.code === "Escape") {
-      instance.close();
-    }
-  });
-}
-
-function blockStandartAction(evt) {
-  evt.preventDefault();
-}
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
 
 console.log(galleryItems);
